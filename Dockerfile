@@ -1,4 +1,4 @@
-FROM dockerfile/ubuntu
+FROM debian:jessie
 
 # Environment variables
 
