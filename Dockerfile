@@ -41,7 +41,8 @@ RUN cd /tmp/db-"${BERKELEY_VERSION51}"/build_unix && \
     
 RUN ls "${BERKELEY_LOC48}"
 RUN ls "${BERKELEY_LOC51}"
-
+RUN apt-get clean
+RUN apt-get autoremove
 # Create folders
 RUN mkdir /config
 RUN mkdir /rootcoinslocation
