@@ -30,14 +30,14 @@ RUN wget -P /tmp http://download.oracle.com/berkeley-db/db-"${BERKELEY_VERSION48
     tar -xf /tmp/db-"${BERKELEY_VERSION48}".tar.gz -C /tmp && \
     rm -f /tmp/db-"${BERKELEY_VERSION48}".tar.gz && \
  cd /tmp/db-"${BERKELEY_VERSION48}"/build_unix && \
-    ../dist/configure && make && make install
+    ../dist/configure --enable-cxx && make && make install
     
 # Download, configure and install BerkeleyDB 5.1
 RUN wget -P /tmp http://download.oracle.com/berkeley-db/db-"${BERKELEY_VERSION51}".tar.gz && \
     tar -xf /tmp/db-"${BERKELEY_VERSION51}".tar.gz -C /tmp && \
     rm -f /tmp/db-"${BERKELEY_VERSION51}".tar.gz
 RUN cd /tmp/db-"${BERKELEY_VERSION51}"/build_unix && \
-    ../dist/configure && make && make install
+    ../dist/configure --enable-cxx && make && make install
     
 RUN ls "${BERKELEY_LOC48}"
 RUN ls "${BERKELEY_LOC51}"
