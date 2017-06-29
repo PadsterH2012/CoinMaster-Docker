@@ -7,6 +7,7 @@ ENV BERKELEY_VERSION51 5.1.29.NC
 
 RUN apt-get -y update && apt-get -y install \
     wget \
+    git \
     build-essential \
     libtool \
     autotools-dev \
@@ -36,3 +37,10 @@ RUN wget -P /tmp http://download.oracle.com/berkeley-db/db-"${BERKELEY_VERSION51
     rm -f /tmp/db-"${BERKELEY_VERSION51}".tar.gz
 RUN cd /tmp/db-"${BERKELEY_VERSION51}"/build_unix && \
     ../dist/configure && make && make install
+
+# Create folders
+RUN mkdir /config
+RUN mkdir /rootcoinslocation
+
+RUN git clone https://github.com/bitcoin/bitcoin.git /rootcoinslocation/bitcoin \
+&& cd /rootcoinslocation/bitcoin; ./autogen.sh; ./configure; make; make install 
