@@ -43,4 +43,4 @@ RUN mkdir /config
 RUN mkdir /rootcoinslocation
 
 RUN git clone https://github.com/bitcoin/bitcoin.git /rootcoinslocation/bitcoin \
-&& cd /rootcoinslocation/bitcoin; ./autogen.sh; ./configure; make; make install 
+&& cd /rootcoinslocation/bitcoin; ./autogen.sh; ./configure --without-gui ; make; make install 
