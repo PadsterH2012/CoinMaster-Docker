@@ -14,7 +14,14 @@ RUN apt-get -y update && apt-get -y install \
     pkg-config \
     libssl-dev \
     libevent-dev \
-    bsdmainutils 
+    bsdmainutils \
+    libboost-system-dev \
+    libboost-filesystem-dev \
+    libboost-chrono-dev \
+    libboost-program-options-dev \
+    libboost-test-dev \
+    libboost-thread-dev \
+    libminiupnpc-dev
 
 # Download, configure and install BerkeleyDB 4.8
 RUN wget -P /tmp http://download.oracle.com/berkeley-db/db-"${BERKELEY_VERSION48}".tar.gz && \
