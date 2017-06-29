@@ -14,7 +14,7 @@ RUN apt-get -y update && apt-get -y install \
     pkg-config \
     libssl-dev \
     libevent-dev \
-    bsdmainutils \
+    bsdmainutils 
 
 # Download, configure and install BerkeleyDB 4.8
 RUN wget -P /tmp http://download.oracle.com/berkeley-db/db-"${BERKELEY_VERSION48}".tar.gz && \
