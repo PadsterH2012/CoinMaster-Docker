@@ -48,4 +48,4 @@ RUN mkdir /config
 RUN mkdir /rootcoinslocation
 
 RUN git clone https://github.com/bitcoin/bitcoin.git /rootcoinslocation/bitcoin \
-&& cd /rootcoinslocation/bitcoin; ./autogen.sh; ./configure --without-gui LDFLAGS="-L"${BERKELEY_LOC48}"/libs" CPPFLAGS="-I"${BERKELEY_LOC48}"/includes" --enable-cxx ; make; make install 
+&& cd /rootcoinslocation/bitcoin; ./autogen.sh; ./configure --without-gui LDFLAGS="-L/usr/local/BerkeleyDB.4.8/libs" CPPFLAGS="-I/usr/local/BerkeleyDB.4.8/includes" --enable-cxx ; make; make install 
