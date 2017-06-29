@@ -5,7 +5,16 @@ FROM debian:jessie
 ENV BERKELEY_VERSION48 4.8.30.NC
 ENV BERKELEY_VERSION51 5.1.29.NC
 
-RUN apt-get -y update && apt-get -y install wget
+RUN apt-get -y update && apt-get -y install \
+    wget \
+    build-essential \
+    libtool \
+    autotools-dev \
+    automake \
+    pkg-config \
+    libssl-dev \
+    libevent-dev \
+    bsdmainutils \
 
 # Download, configure and install BerkeleyDB 4.8
 RUN wget -P /tmp http://download.oracle.com/berkeley-db/db-"${BERKELEY_VERSION48}".tar.gz && \
