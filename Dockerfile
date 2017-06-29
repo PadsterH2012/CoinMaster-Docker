@@ -6,7 +6,6 @@ ENV BERKELEY_VERSION48 4.8.30.NC
 ENV BERKELEY_VERSION51 5.1.29.NC
 ENV BERKELEY_LOC48 /usr/local/BerkeleyDB.4.8
 ENV BERKELEY_LOC51 /usr/local/BerkeleyDB.5.1
-/usr/local/BerkeleyDB.4.8/lib
 RUN apt-get -y update && apt-get -y install \
     wget \
     git \
@@ -48,4 +47,4 @@ RUN mkdir /config
 RUN mkdir /rootcoinslocation
 
 RUN git clone https://github.com/bitcoin/bitcoin.git /rootcoinslocation/bitcoin \
-&& cd /rootcoinslocation/bitcoin; ./autogen.sh; ./configure --without-gui --enable-cxx ; make; make install 
+&& cd /rootcoinslocation/bitcoin; ./autogen.sh; ./configure --without-gui LDFLAGS="-L/usr/local/BerkeleyDB.4.8/libs" CPPFLAGS="-I/usr/local/BerkeleyDB.4.8/includes" --enable-cxx ; make; make install 
