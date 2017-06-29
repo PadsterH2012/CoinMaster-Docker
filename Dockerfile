@@ -4,6 +4,8 @@ FROM debian:jessie
 
 ENV BERKELEY_VERSION48 4.8.30.NC
 ENV BERKELEY_VERSION51 5.1.29.NC
+ENV BERKELEY_LOC48 /usr/local/BerkeleyDB.4.8
+ENV BERKELEY_LOC51 /usr/local/BerkeleyDB.5.1
 
 RUN apt-get -y update && apt-get -y install \
     wget \
@@ -37,10 +39,13 @@ RUN wget -P /tmp http://download.oracle.com/berkeley-db/db-"${BERKELEY_VERSION51
     rm -f /tmp/db-"${BERKELEY_VERSION51}".tar.gz
 RUN cd /tmp/db-"${BERKELEY_VERSION51}"/build_unix && \
     ../dist/configure && make && make install
+    
+RUN ls ${BERKELEY_LOC48}
+RUN ls ${BERKELEY_LOC51}
 
 # Create folders
 RUN mkdir /config
 RUN mkdir /rootcoinslocation
 
 RUN git clone https://github.com/bitcoin/bitcoin.git /rootcoinslocation/bitcoin \
-&& cd /rootcoinslocation/bitcoin; ./autogen.sh; ./configure --without-gui ; make; make install 
+&& cd /rootcoinslocation/bitcoin; ./autogen.sh; ./configure --without-gui --prefix=${BERKELEY_LOC48}/include --enable-cxx ; make; make install 
